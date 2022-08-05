@@ -1,0 +1,83 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model professionals {
+  id Int @id @default(autoincrement())
+  email String @unique
+  password String @unique
+  fullName String
+  city String
+  type String
+  profilePhoto String
+  description String?
+  phoneNumber String
+
+  jobs jobs[]
+
+  @@unique([id, email])
+}
+
+model clients {
+  id Int @id @default(autoincrement())
+  email String @unique
+  password String
+  fullName String
+  phoneNumber String
+
+  address addresses[]
+  jobs jobs[]
+
+  @@unique([id, email])
+}
+
+model addresses {
+  id Int @id @default(autoincrement())
+  clientId Int
+  city String
+  district String
+  street String
+  number Int
+  complement String
+  zipCode String
+  
+  clients clients @relation(fields: [clientId], references: [id])
+}
+
+model states {
+  id Int @id @default(autoincrement())
+  name String @unique
+
+  cities cities[]
+
+  @@unique([id, name])
+}
+
+model cities {
+  id Int @id @default(autoincrement())
+  name String @unique
+  stateId Int
+  state states @relation(fields: [stateId], references: [id])
+
+  @@unique([id, name])
+}
+
+model jobs {
+  id Int @id @default(autoincrement())
+  clientId Int
+  professionalId Int
+  date String
+  isConfirmed Boolean @default(false)
+
+  clients clients @relation(fields: [clientId], references: [id])
+  professionals professionals @relation(fields: [professionalId], references: [id])
+}
+
