@@ -48,11 +48,17 @@ async function loginClient(loginClient: CreateClientLogin) {
     return token
 }
 
+async function getClientLocationById(clientId: number) {
+    const location = await clientReposiotory.getClientLocationById(clientId)
+    return location
+}
+
 const clientService = {
     createClient,
     createClientAddress,
     getLastRegisterId,
-    loginClient
+    loginClient,
+    getClientLocationById
 }
 
 export default clientService

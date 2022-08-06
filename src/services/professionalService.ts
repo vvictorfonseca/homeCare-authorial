@@ -38,8 +38,8 @@ async function loginProfessional(loginProfessional: CreateProfessionalLogin) {
     return token
 }
 
-async function getProfessionalsByType(type) {
-    const professionals = await professionalRepository.getProfessionalsByType(type)
+async function getProfessionalsByTypeAndLocation(type: string, city: string) {
+    const professionals = await professionalRepository.getProfessionalsByTypeAndLocation(type, city)
     
     professionals.forEach(
         (info) => delete info.password
@@ -55,7 +55,7 @@ async function updateProfessionalDescription(description: string, email: string)
 const professionalService = {
     createProfessional,
     loginProfessional,
-    getProfessionalsByType,
+    getProfessionalsByTypeAndLocation,
     updateProfessionalDescription
 }
 

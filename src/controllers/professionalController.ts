@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import professionalService, { CreateProfessionalData, CreateProfessionalLogin } from "../services/professionalService.js";
+import clientService, { CreateClientData, CreateAddressData, CreateClientLogin } from "../services/clientService.js";
 
 async function createProfessional(req: Request, res: Response) {
     const newProfessional: CreateProfessionalData = req.body
@@ -19,8 +20,17 @@ async function loginProfessional(req: Request, res: Response) {
 
 async function getProfessionalsByType(req: Request, res: Response) {
     const type = req.params.type
+    const clientId = res.locals.user.id
 
-    const professionals = await professionalService.getProfessionalsByType(type)
+    const location = await clientService.getClientLocationById(clientId)
+    let city: string = null
+    location.address.forEach(
+        (info) => city = info.city
+    )
+
+    console.log("city", city)
+
+    const professionals = await professionalService.getProfessionalsByTypeAndLocation(type, city)
 
     return res.status(200).send(professionals)
 }

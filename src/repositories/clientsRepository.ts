@@ -25,12 +25,28 @@ async function getLastRegisterId() {
     return id
 }
 
+async function getClientLocationById(clientId: number) {
+    const location = prisma.clients.findFirst({
+        where: {id: clientId},
+        select: {
+            address: {
+                select: {
+                    city: true
+                }
+            }
+        }
+    })
+
+    return location
+}
+
 
 const clientReposiotory = {
     createClient,
     getClientByEmail,
     createClientAddress,
-    getLastRegisterId
+    getLastRegisterId,
+    getClientLocationById
 }
 
 export default clientReposiotory

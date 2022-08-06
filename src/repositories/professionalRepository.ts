@@ -10,8 +10,18 @@ async function getProfessionalByEmail(email: string) {
     return professional
 }
 
-async function getProfessionalsByType(type) {
-    const professionals = await prisma.professionals.findMany({where: {type: type}});
+async function getProfessionalsByTypeAndLocation(type: string, city: string) {
+    const professionals = await prisma.professionals.findMany({
+        where: {
+            type: type,
+            city: {
+                contains: city,
+                mode: 'insensitive'
+            }
+        }
+        
+    });
+    
     return professionals
 }
 
@@ -36,7 +46,7 @@ async function getProfessionalById(professionalId: number) {
 const professionalRepository = {
     createProfessional,
     getProfessionalByEmail,
-    getProfessionalsByType,
+    getProfessionalsByTypeAndLocation,
     updateProfessionalDescription,
     getProfessionalById
 }

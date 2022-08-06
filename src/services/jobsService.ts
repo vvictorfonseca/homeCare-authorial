@@ -20,9 +20,21 @@ async function updateRequestToTrue(newJob: CreateJobData) {
     await jobsRepository.updateRequestToTrue(newJob)
 }
 
+async function getjobsByProfessionalId(professionalId: number) {
+    const jobs = await jobsRepository.getjobsByProfessionalId(professionalId)
+    return jobs
+}
+
+async function getJobsByClientId(clientId: number) {
+    const jobs = await  jobsRepository.getJobsByClientId(clientId)
+    return jobs
+}
+
 const jobsService = {
     requestNewJob,
-    updateRequestToTrue
+    updateRequestToTrue,
+    getjobsByProfessionalId,
+    getJobsByClientId
 }
 
 export default jobsService

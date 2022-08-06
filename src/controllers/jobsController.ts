@@ -22,4 +22,20 @@ async function updateRequestToTrue(req: Request, res: Response) {
     return res.sendStatus(201)
 }
 
-export { requestNewJob, updateRequestToTrue }
+async function getjobsByProfessionalId(req: Request, res: Response) {
+    const professionalId = res.locals.user.id
+
+    const jobs = await jobsService.getjobsByProfessionalId(professionalId)
+
+    return res.status(200).send(jobs)
+}
+
+async function getJobsByClientId(req: Request, res: Response) {
+    const clientId = res.locals.user.id
+
+    const jobs = await jobsService.getJobsByClientId(clientId)
+
+    return res.status(200).send(jobs)
+}
+
+export { requestNewJob, updateRequestToTrue, getjobsByProfessionalId, getJobsByClientId }
