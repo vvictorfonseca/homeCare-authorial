@@ -31,6 +31,7 @@ async function loginProfessional(loginProfessional: CreateProfessionalLogin) {
     const isCorrectPassword = bcrypt.compareSync(loginProfessional.password, professional.password)
 
     if(!professional || !isCorrectPassword) {
+        console.log("entrou no erro")
         throw { type: "not_found", message: "invalid user or password" }
     }
 
