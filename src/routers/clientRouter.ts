@@ -9,7 +9,7 @@ const clientRouter = Router()
 
 clientRouter.post("/sign-up/client", validateSchema(clientSchema), createClient)
 clientRouter.post("/sign-up/client/address", validateSchema(addressShema), createClientAddress)
-clientRouter.post("/", validateSchema(loginClientSchema), loginClient)
+clientRouter.post("/client", validateSchema(loginClientSchema), loginClient)
 clientRouter.put("/update/location", validateToken, validateSchema(addressShema), updateClientLocation)
 
 export default clientRouter
