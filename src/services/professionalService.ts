@@ -48,15 +48,21 @@ async function getProfessionalsByTypeAndLocation(type: string, city: string) {
     return professionals
 }
 
-async function updateProfessionalDescription(description: string, email: string) {
-    await professionalRepository.updateProfessionalDescription(description, email)
+async function updateProfessionalDescription(description: string, id: number) {
+    await professionalRepository.updateProfessionalDescription(description, id)
+}
+
+async function getProfessionalByEmail(email: string) {
+    const professional = await professionalRepository.getProfessionalByEmail(email)
+    return professional
 }
 
 const professionalService = {
     createProfessional,
     loginProfessional,
     getProfessionalsByTypeAndLocation,
-    updateProfessionalDescription
+    updateProfessionalDescription,
+    getProfessionalByEmail
 }
 
 export default professionalService

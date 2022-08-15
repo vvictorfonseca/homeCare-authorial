@@ -53,12 +53,23 @@ async function getClientLocationById(clientId: number) {
     return location
 }
 
+async function updateClientLocation(newAddress: CreateAddressData) {
+    await clientReposiotory.updateClientLocation(newAddress)
+}
+
+async function getClientByEmail(email: string) {
+    const client = await clientReposiotory.getClientByEmail(email)
+    return client
+}
+
 const clientService = {
     createClient,
     createClientAddress,
     getLastRegisterId,
     loginClient,
-    getClientLocationById
+    getClientLocationById,
+    updateClientLocation,
+    getClientByEmail
 }
 
 export default clientService

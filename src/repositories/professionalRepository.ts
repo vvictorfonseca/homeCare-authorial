@@ -19,16 +19,15 @@ async function getProfessionalsByTypeAndLocation(type: string, city: string) {
                 mode: 'insensitive'
             }
         }
-        
     });
     
     return professionals
 }
 
-async function updateProfessionalDescription(description: string, email: string) {
+async function updateProfessionalDescription(description: string, id: number) {
     const updateDescription = prisma.professionals.update({
         where: {
-            email: email
+            id
         },
         data: {
             description

@@ -36,6 +36,7 @@ async function getjobsByProfessionalId(professionalId: number) {
                     id: true,
                     fullName: true,
                     phoneNumber: true,
+                    profilePhoto: true,
                     
                     address: {
                         select: {
@@ -98,7 +99,8 @@ async function getJobsByClientId(clientId: number) {
                     city: true,
                     type: true,
                     phoneNumber: true,
-                    profilePhoto: true
+                    profilePhoto: true,
+                    description: true
                 }
             }
         }
@@ -107,11 +109,20 @@ async function getJobsByClientId(clientId: number) {
     return jobs
 }
 
+async function deleteJobById(jobId: number) {
+    const job = await prisma.jobs.delete({
+        where: {id: jobId}
+    })
+
+    return job
+}
+
 const jobsRepository = {
     requestNewJob,
     updateRequestToTrue,
     getjobsByProfessionalId,
-    getJobsByClientId
+    getJobsByClientId,
+    deleteJobById
 }
 
 export default jobsRepository

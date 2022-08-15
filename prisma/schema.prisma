@@ -32,6 +32,7 @@ model clients {
   password String
   fullName String
   phoneNumber String
+  profilePhoto String
 
   address addresses[]
   jobs jobs[]
@@ -50,24 +51,6 @@ model addresses {
   zipCode String
   
   clients clients @relation(fields: [clientId], references: [id])
-}
-
-model states {
-  id Int @id @default(autoincrement())
-  name String @unique
-
-  cities cities[]
-
-  @@unique([id, name])
-}
-
-model cities {
-  id Int @id @default(autoincrement())
-  name String @unique
-  stateId Int
-  state states @relation(fields: [stateId], references: [id])
-
-  @@unique([id, name])
 }
 
 model jobs {

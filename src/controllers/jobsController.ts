@@ -38,4 +38,12 @@ async function getJobsByClientId(req: Request, res: Response) {
     return res.status(200).send(jobs)
 }
 
-export { requestNewJob, updateRequestToTrue, getjobsByProfessionalId, getJobsByClientId }
+async function deleteJobById(req: Request, res: Response) {
+    const jobId = parseInt(req.params.jobId)
+
+    await jobsService.deleteJobById(jobId)
+
+    return res.sendStatus(200)
+}
+
+export { requestNewJob, updateRequestToTrue, getjobsByProfessionalId, getJobsByClientId, deleteJobById }

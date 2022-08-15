@@ -3,8 +3,10 @@ import clientService, { CreateClientData, CreateAddressData, CreateClientLogin }
 
 async function createClient(req: Request, res: Response) {
     const newClient: CreateClientData = req.body
+    console.log(newClient)
 
     await clientService.createClient(newClient)
+    console.log("aquiiiii")
 
     return res.sendStatus(201)
 }
@@ -21,9 +23,37 @@ async function createClientAddress(req: Request, res: Response) {
 async function loginClient(req: Request, res: Response) {
     const loginClient: CreateClientLogin = req.body
 
+    console.log("entrou")
+
+    const client = await clientService.getClientByEmail(loginClient.email)
+
+    const location = await clientService.getClientLocationById(client.id)
+    let city: string = null
+    location.address.forEach(
+        (info) => city = info.city
+    )
+
+    console.log("cityyy", city)
+
     const token = await clientService.loginClient(loginClient)
 
-    return res.status(200).send(token)
+    const data = ({...client, token, city})
+    delete data.password
+
+    console.log("data", data)
+
+    return res.status(200).send(data)
 }
 
-export { createClient, createClientAddress, loginClient }
+async function updateClientLocation(req: Request, res: Response) {
+    const newAddress: CreateAddressData = req.body
+    const clientId = res.locals.user.id
+    console.log(newAddress)
+    
+
+    await clientService.updateClientLocation({...newAddress, clientId: clientId})
+
+    return res.sendStatus(200)
+}
+
+export { createClient, createClientAddress, loginClient, updateClientLocation }

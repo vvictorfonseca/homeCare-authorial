@@ -13,9 +13,14 @@ async function createProfessional(req: Request, res: Response) {
 async function loginProfessional(req: Request, res: Response) {
     const loginProfessional: CreateProfessionalLogin = req.body
 
+    const professional = await professionalService.getProfessionalByEmail(loginProfessional.email)
+
     const token = await professionalService.loginProfessional(loginProfessional)
 
-    return res.status(200).send(token)
+    const data = ({...professional, token})
+    delete data.password
+
+    return res.status(200).send(data)
 }
 
 async function getProfessionalsByType(req: Request, res: Response) {
@@ -37,12 +42,12 @@ async function getProfessionalsByType(req: Request, res: Response) {
 
 async function updateProfessionalDescription(req: Request, res: Response) {
     const body = req.body
-    const email = res.locals.user.email
+    const email = res.locals.user.id
     const description = body.description
     
     await professionalService.updateProfessionalDescription(description, email)
     
-    return res.sendStatus(201)
+    return res.sendStatus(200)
 }
 
 export { createProfessional, loginProfessional, getProfessionalsByType, updateProfessionalDescription }
