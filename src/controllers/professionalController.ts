@@ -11,6 +11,7 @@ async function createProfessional(req: Request, res: Response) {
 }
 
 async function loginProfessional(req: Request, res: Response) {
+    console.log("entrou enrou")
     const loginProfessional: CreateProfessionalLogin = req.body
 
     const professional = await professionalService.getProfessionalByEmail(loginProfessional.email)
@@ -18,6 +19,7 @@ async function loginProfessional(req: Request, res: Response) {
     const token = await professionalService.loginProfessional(loginProfessional)
 
     const data = ({...professional, token})
+    console.log("dataaaa", data)
     delete data.password
 
     return res.status(200).send(data)
