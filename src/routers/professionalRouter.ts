@@ -8,7 +8,7 @@ import { createProfessional, loginProfessional, getProfessionalsByType, updatePr
 const professionalRouter = Router()
 
 professionalRouter.post("/sign-up/professional", validateSchema(professionalSchema), createProfessional)
-professionalRouter.post("/professional", validateSchema(loginProfessionalSchema), loginProfessional)
+professionalRouter.post("/sign-in/professional", validateSchema(loginProfessionalSchema), loginProfessional)
 professionalRouter.get("/professionals/:type",  validateToken, getProfessionalsByType)
 professionalRouter.put("/update/description", validateToken, validateSchema(updateDescriptionSchema), updateProfessionalDescription)
 
