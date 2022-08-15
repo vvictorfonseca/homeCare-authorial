@@ -6,6 +6,7 @@ async function createProfessional(newProfessional: CreateProfessionalData) {
 }
 
 async function getProfessionalByEmail(email: string) {
+    console.log("entrou pra pegar o prof")
     const professional = await prisma.professionals.findFirst({where: {email}})
     return professional
 }

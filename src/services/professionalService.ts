@@ -26,6 +26,8 @@ async function createProfessional(newProfessional: CreateProfessionalData) {
 async function loginProfessional(loginProfessional: CreateProfessionalLogin) {
     const professional = await professionalRepository.getProfessionalByEmail(loginProfessional.email)
 
+    console.log("profissional", professional)
+
     const isCorrectPassword = bcrypt.compareSync(loginProfessional.password, professional.password)
 
     if(!professional || !isCorrectPassword) {
