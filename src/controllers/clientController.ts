@@ -28,25 +28,22 @@ async function loginClient(req: Request, res: Response) {
     const token = await clientService.loginClient(loginClient)
     console.log("token no controller", token)
 
-    // if (token) {
-    //     console.log("entrou no ifffff")
-    //     const client = await clientService.getClientByEmail(loginClient.email)
+    const client = await clientService.getClientByEmail(loginClient.email)
 
-    //     const location = await clientService.getClientLocationById(client.id)
-    //     let city: string = null
+    const location = await clientService.getClientLocationById(client.id)
         
-    //     location.address.forEach(
-    //     (info) => city = info.city
-    //     )
+    let city: string = null
+        
+    location.address.forEach(
+    (info) => city = info.city
+    )
 
-    //     const data = ({...client, token, city })
-    //     delete data.password
+    const data = ({...client, token, city })
+    delete data.password
 
-    //     console.log("data", data)
+    console.log("data", data)
 
-        return res.status(200).send(token)
-    //}
-
+    return res.status(200).send({...client, token, city})
 }
 
 async function updateClientLocation(req: Request, res: Response) {
