@@ -2,7 +2,6 @@ import prisma from "../config/database.js";
 import { CreateClientData, CreateAddressData } from "../services/clientService.js";
 
 async function createClient(newClient: CreateClientData) {
-    console.log("entrou repository")
     await prisma.clients.create({data: newClient})
 }
 

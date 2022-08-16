@@ -26,18 +26,14 @@ async function createProfessional(newProfessional: CreateProfessionalData) {
 async function loginProfessional(loginProfessional: CreateProfessionalLogin) {
     const professional = await professionalRepository.getProfessionalByEmail(loginProfessional.email)
 
-    console.log("profissional", professional)
-
     const isCorrectPassword = bcrypt.compareSync(loginProfessional.password, professional.password)
 
     if(!professional || !isCorrectPassword) {
-        console.log("entrou no erro")
         throw { type: "not_found", message: "invalid user or password" }
     }
 
     const expiresAt = { expiresIn: 60 * 60 * 24 };
     const token = jwt.sign( {id: professional.id, email: professional.email}, JWT_SECRET_KEY, expiresAt)
-    console.log("token", token)
     return token
 }
 

@@ -15,7 +15,6 @@ async function updateRequestToTrue(req: Request, res: Response) {
     const body = req.body
     const professionalId = res.locals.user.id
     const newJob: CreateJobData = ({...body, professionalId})
-    console.log("newJob", newJob)
 
     await jobsService.updateRequestToTrue(newJob)
 

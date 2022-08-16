@@ -3,10 +3,8 @@ import clientService, { CreateClientData, CreateAddressData, CreateClientLogin }
 
 async function createClient(req: Request, res: Response) {
     const newClient: CreateClientData = req.body
-    console.log(newClient)
 
     await clientService.createClient(newClient)
-    console.log("aquiiiii")
 
     return res.sendStatus(201)
 }
@@ -23,10 +21,7 @@ async function createClientAddress(req: Request, res: Response) {
 async function loginClient(req: Request, res: Response) {
     const loginClient: CreateClientLogin = req.body
 
-    console.log("loginClient", loginClient)
-
     const token = await clientService.loginClient(loginClient)
-    console.log("token no controller", token)
 
     const client = await clientService.getClientByEmail(loginClient.email)
 
@@ -41,17 +36,13 @@ async function loginClient(req: Request, res: Response) {
     const data = ({...client, token, city })
     delete data.password
 
-    console.log("data", data)
-
     return res.status(200).send({...client, token, city})
 }
 
 async function updateClientLocation(req: Request, res: Response) {
     const newAddress: CreateAddressData = req.body
     const clientId = res.locals.user.id
-    console.log(newAddress)
     
-
     await clientService.updateClientLocation({...newAddress, clientId: clientId})
 
     return res.sendStatus(200)

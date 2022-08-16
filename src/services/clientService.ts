@@ -35,20 +35,16 @@ async function getLastRegisterId() {
 }
 
 async function loginClient(loginClient: CreateClientLogin) {
-    console.log("entrou no service pra pegar o token")
     const client = await clientReposiotory.getClientByEmail(loginClient.email)
-    console.log("client do service", client)
 
     const isCorrectPassword = bcrypt.compareSync(loginClient.password, client.password)
 
     if(!client || !isCorrectPassword) {
-        console.log("entrou no erro")
         throw { type: "not_found", message: "invalid user or password" }
     }
 
     const expiresAt = { expiresIn: 60 * 60 * 24 };
     const token = jwt.sign({id: client.id, email: client.email}, JWT_SECRET_KEY, expiresAt)
-    console.log("to aqui", token)
     return token;
 }
 
