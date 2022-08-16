@@ -23,21 +23,17 @@ async function createClientAddress(req: Request, res: Response) {
 async function loginClient(req: Request, res: Response) {
     const loginClient: CreateClientLogin = req.body
 
-    console.log("entrou")
-
     const client = await clientService.getClientByEmail(loginClient.email)
 
-    const location = await clientService.getClientLocationById(client.id)
-    let city: string = null
-    location.address.forEach(
-        (info) => city = info.city
-    )
-
-    console.log("cityyy", city)
+    // const location = await clientService.getClientLocationById(client.id)
+    // let city: string = null
+    // location.address.forEach(
+    //     (info) => city = info.city
+    // )
 
     const token = await clientService.loginClient(loginClient)
 
-    const data = ({...client, token, city})
+    const data = ({...client, token })
     delete data.password
 
     console.log("data", data)
