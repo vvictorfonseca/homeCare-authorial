@@ -23,7 +23,11 @@ async function createClientAddress(req: Request, res: Response) {
 async function loginClient(req: Request, res: Response) {
     const loginClient: CreateClientLogin = req.body
 
+    console.log("loginClient", loginClient)
+
     const client = await clientService.getClientByEmail(loginClient.email)
+
+    console.log("client", client)
 
     // const location = await clientService.getClientLocationById(client.id)
     // let city: string = null
