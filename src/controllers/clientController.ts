@@ -31,14 +31,17 @@ async function loginClient(req: Request, res: Response) {
     //     (info) => city = info.city
     // )
 
-    const token = await clientService.loginClient(loginClient)
+    if (client) {
+        const token = await clientService.loginClient(loginClient)
 
-    const data = ({...client, token })
-    delete data.password
+        const data = ({...client, token })
+        delete data.password
 
-    console.log("data", data)
+        console.log("data", data)
 
-    return res.status(200).send(data)
+        return res.status(200).send(data)
+    }
+
 }
 
 async function updateClientLocation(req: Request, res: Response) {
