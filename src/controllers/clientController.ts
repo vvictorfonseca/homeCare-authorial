@@ -35,7 +35,8 @@ async function loginClient(req: Request, res: Response) {
     //     (info) => city = info.city
     // )
 
-    if (client) {
+    if (client != undefined) {
+        console.log("entrou no client")
         const token = await clientService.loginClient(loginClient)
 
         const data = ({...client, token })
