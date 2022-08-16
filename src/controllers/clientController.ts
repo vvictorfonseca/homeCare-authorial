@@ -39,6 +39,8 @@ async function loginClient(req: Request, res: Response) {
         console.log("entrou no client")
         const token = await clientService.loginClient(loginClient)
 
+        console.log("token", token)
+
         const data = ({...client, token })
         delete data.password
 
