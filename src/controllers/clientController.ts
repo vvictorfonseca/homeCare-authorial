@@ -25,23 +25,21 @@ async function loginClient(req: Request, res: Response) {
 
     console.log("loginClient", loginClient)
 
-    const client = await clientService.getClientByEmail(loginClient.email)
+    const token = await clientService.loginClient(loginClient)
+    console.log("token no controller", token)
 
-    console.log("client", client)
+    if (token) {
+        console.log("entrou no ifffff")
+        const client = await clientService.getClientByEmail(loginClient.email)
 
-    // const location = await clientService.getClientLocationById(client.id)
-    // let city: string = null
-    // location.address.forEach(
-    //     (info) => city = info.city
-    // )
+        const location = await clientService.getClientLocationById(client.id)
+        let city: string = null
+        
+        location.address.forEach(
+        (info) => city = info.city
+        )
 
-    if (client != undefined) {
-        console.log("entrou no client")
-        const token = await clientService.loginClient(loginClient)
-
-        console.log("token", token)
-
-        const data = ({...client, token })
+        const data = ({...client, token, city })
         delete data.password
 
         console.log("data", data)

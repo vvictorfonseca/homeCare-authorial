@@ -3,9 +3,11 @@ import { addresses } from "@prisma/client";
 import bcrypt from "bcrypt"
 import jwt from "jsonwebtoken"
 import dotenv from "dotenv"
-//dotenv.config({ path: ".env "});
+dotenv.config({ path: ".env "});
 
 import clientReposiotory from "../repositories/clientsRepository.js";
+
+const { JWT_SECRET_KEY } = process.env
 
 export type CreateClientData = Omit<clients, "id">
 export type CreateClientLogin = Omit<clients, "id" | "fullName" | "phoneNumber">
@@ -44,11 +46,10 @@ async function loginClient(loginClient: CreateClientLogin) {
         throw { type: "not_found", message: "invalid user or password" }
     }
 
-    const key = process.env.JWT_SECRET
     const expiresAt = { expiresIn: 60 * 60 * 24 };
-    const token = jwt.sign({id: client.id, email: client.email}, key, expiresAt)
+    const token = jwt.sign({id: client.id, email: client.email}, JWT_SECRET_KEY, expiresAt)
     console.log("to aqui", token)
-    return token
+    return token;
 }
 
 async function getClientLocationById(clientId: number) {
