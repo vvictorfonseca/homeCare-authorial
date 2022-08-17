@@ -15,7 +15,8 @@ const addressShema = Joi.object<CreateAddressData>({
     street: Joi.string().required(),
     number: Joi.number().required(), 
     complement: Joi.string().required(),
-    zipCode: Joi.string().required().length(9)
+    zipCode: Joi.string().required().length(9),
+    clientId: Joi.number()
 })
 
 const loginClientSchema = Joi.object<CreateClientLogin>({
