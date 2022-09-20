@@ -5,7 +5,7 @@
 </p>
 
 <p align = "center">
-   ![cleaning](https://user-images.githubusercontent.com/97696942/191323759-059f3c36-f51e-4036-a3f3-05efc0d29cfc.png)
+   <img src="https://www.clipartmax.com/png/middle/298-2983623_cleaning-services-icon-png.png" alt="Cleaning Services Icon Png@clipartmax.com">
 </p>
 
 
