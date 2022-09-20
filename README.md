@@ -5,7 +5,7 @@
 </p>
 
 <p align = "center">
-   <img src="https://www.clipartmax.com/png/middle/298-2983623_cleaning-services-icon-png.png" alt="Cleaning Services Icon Png@clipartmax.com">
+  <img  width="150" src="https://www.clipartmax.com/png/small/298-2983623_cleaning-services-icon-png.png" alt="Cleaning Services Icon Png @clipartmax.com">
 </p>
 
 
