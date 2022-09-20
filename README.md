@@ -5,13 +5,24 @@
 </p>
 
 <p align = "center">
-   <img src="https://img.shields.io/badge/author-Victor Hugo Fonseca | Hermes -4dae71?style=flat-square" />
+   <img src="https://img.shields.io/badge/author-Victor Hugo Fonseca -4dae71?style=flat-square" />
 </p>
 
 
 ##  :clipboard: Descrição
 
-Essa aplicação consiste em um e-commerce de uma loja de vinil. Nela o usuário consegue se cadastrar e escolher a partir de categorias musicais vinis que o interessam. A partir do momento que o usuário clica em uma categoria, é exibido todos os álbuns da categoria musical escolhida, tendo a opção de selecionar e adicionar ao carrinho o vinil escolhido, e a partir disso, finalizar sua compra, apagar o produto do carrinho ou adicionar mais items.
+HomeCare é uma aplicação de prestação de serviços domésticos. Profissionais podem se cadastrar e escolhero tipo de serviço que irá prestar, FAXINA, JARDINAGEM ou SERVIÇOS ELÉTRICOS. Por outro lado, qualquer pessoa que necessita de algum serviço desse tipo, pode se cadastrar como cliente e contratar o serviço desses profissionais.
+
+***
+##  :clipboard: Principais Funcionalidades
+
+- Profissionais podem criar uma descrição e atualizá-la quando quiser.
+- Profissionais recebem a notificação de alguma reserva de serviço feito por algum cliente e possuem a opção de aceitar ou não o trabalho, caso rejeite, a solicitação é apagada imediatamente.
+- Na página dos clientes, os profissionais são filtrados a partir de sua localização.
+- Clientes podem atualizar sua localização a qualquer momento.
+- Clientes podem escolher a categoria de serviço que querem contratar.
+- Clientes podem solicitar um trabalho escolhendo a data para que o serviço seja prestado.
+- Clientes possuem uma aba "requests" contendo todas suas solicitações de serviços e seus status, aceito ou pendente.
 
 ***
 
@@ -20,8 +31,8 @@ Essa aplicação consiste em um e-commerce de uma loja de vinil. Nela o usuário
 - React.js
 - Node.js
 - Express.js
-- Node.js
-- MongoDb
+- PostgresSQL
+- Prisma
 - JWTs & refresh tokens
 
 ***
