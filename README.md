@@ -17,7 +17,7 @@ HomeCare é uma aplicação de prestação de serviços domésticos. Profissiona
 ##  :hammer: Principais Funcionalidades
 
 - Profissionais podem criar uma descrição e atualizá-la quando quiser.
-- Profissionais recebem a notificação de alguma reserva de serviço feito por algum cliente e possuem a opção de aceitar ou não o trabalho, caso rejeite, a solicitação é apagada imediatamente.
+- Profissionais recebem a notificação de alguma reserva de serviço feito por algum cliente e possuem a opção de aceitar ou não o trabalho. Caso rejeite, a solicitação é apagada imediatamente.
 - Na página dos clientes, os profissionais são filtrados a partir de sua localização.
 - Clientes podem atualizar sua localização a qualquer momento.
 - Clientes podem escolher a categoria de serviço que querem contratar.
