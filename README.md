@@ -5,7 +5,7 @@
 </p>
 
 <p align = "center">
-   <img src="https://img.shields.io/badge/author-Victor Hugo Fonseca -4dae71?style=flat-square" />
+   ![cleaning](https://user-images.githubusercontent.com/97696942/191323759-059f3c36-f51e-4036-a3f3-05efc0d29cfc.png)
 </p>
 
 
@@ -14,7 +14,7 @@
 HomeCare é uma aplicação de prestação de serviços domésticos. Profissionais podem se cadastrar e escolhero tipo de serviço que irá prestar, FAXINA, JARDINAGEM ou SERVIÇOS ELÉTRICOS. Por outro lado, qualquer pessoa que necessita de algum serviço desse tipo, pode se cadastrar como cliente e contratar o serviço desses profissionais.
 
 ***
-##  :clipboard: Principais Funcionalidades
+##  :hammer: Principais Funcionalidades
 
 - Profissionais podem criar uma descrição e atualizá-la quando quiser.
 - Profissionais recebem a notificação de alguma reserva de serviço feito por algum cliente e possuem a opção de aceitar ou não o trabalho, caso rejeite, a solicitação é apagada imediatamente.
