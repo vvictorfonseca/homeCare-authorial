@@ -43,7 +43,7 @@ Certifique-se que voce tem a ultima versão estável do Node.js e npm rodando lo
 Primeiro, faça o clone desse repositório na sua maquina:
 
 ```
-git clone https://github.com/vvictorfonseca/Driven-projeto14-lojavinil-back.git
+git clone https://github.com/vvictorfonseca/homeCare-backEnd-Autoral.git
 ```
 
 Depois, dentro da pasta, rode o seguinte comando para instalar as dependencias.
