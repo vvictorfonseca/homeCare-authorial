@@ -1,9 +1,5 @@
 # <p align = "center"> HomeCare </p>
 
-<p align="center">
-   <img width="150" src="file:///C:/Users/Victor%20Hugo%20Fonseca/Downloads/20835078991584409089.svg"/>
-</p>
-
 <p align = "center">
   <img  width="150" src="https://www.clipartmax.com/png/small/298-2983623_cleaning-services-icon-png.png" alt="Cleaning Services Icon Png @clipartmax.com">
 </p>
