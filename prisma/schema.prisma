@@ -62,5 +62,15 @@ model jobs {
 
   clients clients @relation(fields: [clientId], references: [id])
   professionals professionals @relation(fields: [professionalId], references: [id])
+
+  evaluations evaluations[]
+}
+
+model evaluations {
+  id Int @id @default(autoincrement())
+  jobId Int
+  content String
+  
+  jobs jobs @relation(fields: [jobId], references: [id])
 }
 
