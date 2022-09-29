@@ -37,6 +37,14 @@ async function getJobsByClientId(req: Request, res: Response) {
     return res.status(200).send(jobs)
 }
 
+async function getJobsToEvaluateByClientId(req: Request, res: Response) {
+  const clientId = res.locals.user.id
+
+  const jobs = await jobsService.getJobsToEvaluateByClientId(clientId)
+
+  return res.status(200).send(jobs)
+}
+
 async function deleteJobById(req: Request, res: Response) {
     const jobId = parseInt(req.params.jobId)
 
@@ -45,4 +53,4 @@ async function deleteJobById(req: Request, res: Response) {
     return res.sendStatus(200)
 }
 
-export { requestNewJob, updateRequestToTrue, getjobsByProfessionalId, getJobsByClientId, deleteJobById }
+export { requestNewJob, updateRequestToTrue, getjobsByProfessionalId, getJobsByClientId, deleteJobById, getJobsToEvaluateByClientId }

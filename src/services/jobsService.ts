@@ -1,3 +1,5 @@
+import dayjs from "dayjs";
+
 import { jobs } from "@prisma/client";
 import clientReposiotory from "../repositories/clientsRepository.js";
 import jobsRepository from "../repositories/jobsRepository.js";
@@ -31,11 +33,16 @@ async function updateRequestToTrue(newJob: CreateJobData) {
 async function getjobsByProfessionalId(professionalId: number) {
     const jobs = await jobsRepository.getjobsByProfessionalId(professionalId)
 
-    // if (jobs.length == 0) {
-    //     throw { type: "bad_request", message: "This professional has no jobs registered" }
-    // }
-
     return jobs
+}
+
+async function getJobsToEvaluateByClientId(clientId: number) {
+  console.log("entrooou")
+  const jobs = await  jobsRepository.getJobsByClientId(clientId)
+
+  const jobsFiltered = jobs.filter(element => element.date < dayjs().format('DD/MM/YYYY'));
+
+  return jobsFiltered
 }
 
 async function getJobsByClientId(clientId: number) {
@@ -52,7 +59,8 @@ const jobsService = {
     updateRequestToTrue,
     getjobsByProfessionalId,
     getJobsByClientId,
-    deleteJobById
+    deleteJobById,
+    getJobsToEvaluateByClientId
 }
 
 export default jobsService
