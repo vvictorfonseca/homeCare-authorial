@@ -1,13 +1,12 @@
 import dayjs from "dayjs";
-import moment from 'moment';
 
-import { jobs } from "@prisma/client";
+import { jobs,evaluations } from "@prisma/client";
 import clientReposiotory from "../repositories/clientsRepository.js";
 import jobsRepository from "../repositories/jobsRepository.js";
 import professionalRepository from "../repositories/professionalRepository.js";
-import { date } from "joi";
 
 export type CreateJobData = Omit<jobs, "id" | "isConfirmed">
+export type CreateEvaluateData = Omit<evaluations, "id">
 
 async function requestNewJob(newJob: CreateJobData) {
 
@@ -65,13 +64,18 @@ async function deleteJobById(jobId: number) {
   await jobsRepository.deleteJobById(jobId)
 }
 
+async function evaluateJob(evaluateJob: CreateEvaluateData) {
+  await jobsRepository.evaluateJob(evaluateJob)
+}
+
 const jobsService = {
   requestNewJob,
   updateRequestToTrue,
   getjobsByProfessionalId,
   getJobsByClientId,
   deleteJobById,
-  getJobsToEvaluateByClientId
+  getJobsToEvaluateByClientId,
+  evaluateJob
 }
 
 export default jobsService

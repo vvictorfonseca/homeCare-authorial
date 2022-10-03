@@ -1,5 +1,5 @@
 import prisma from "../config/database.js";
-import { CreateJobData } from "../services/jobsService.js";
+import { CreateJobData, CreateEvaluateData } from "../services/jobsService.js";
 
 async function requestNewJob(newJob: CreateJobData) {
     await prisma.jobs.create({data: newJob})
@@ -117,12 +117,17 @@ async function deleteJobById(jobId: number) {
     return job
 }
 
+async function evaluateJob(evaluateJob: CreateEvaluateData) {
+  await prisma.evaluations.create({data: evaluateJob})
+}
+
 const jobsRepository = {
     requestNewJob,
     updateRequestToTrue,
     getjobsByProfessionalId,
     getJobsByClientId,
-    deleteJobById
+    deleteJobById,
+    evaluateJob
 }
 
 export default jobsRepository

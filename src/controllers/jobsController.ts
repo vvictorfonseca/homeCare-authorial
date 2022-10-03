@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import jobsService, { CreateJobData } from "../services/jobsService.js";
+import jobsService, { CreateJobData, CreateEvaluateData } from "../services/jobsService.js";
 
 async function requestNewJob(req: Request, res: Response) {
     const body = req.body
@@ -54,4 +54,12 @@ async function deleteJobById(req: Request, res: Response) {
     return res.sendStatus(200)
 }
 
-export { requestNewJob, updateRequestToTrue, getjobsByProfessionalId, getJobsByClientId, deleteJobById, getJobsToEvaluateByClientId }
+async function evaluateJob(req: Request, res: Response) {
+  const evaluateJob: CreateEvaluateData = req.body
+
+  await jobsService.evaluateJob(evaluateJob)
+
+  return res.sendStatus(201)
+}
+
+export { requestNewJob, updateRequestToTrue, getjobsByProfessionalId, getJobsByClientId, deleteJobById, getJobsToEvaluateByClientId, evaluateJob }
