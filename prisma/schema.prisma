@@ -58,7 +58,7 @@ model jobs {
   clientId Int
   professionalId Int
   date String
-  isConfirmed Boolean @default(false)
+  isConfirmed Status @default(Pending)
 
   clients clients @relation(fields: [clientId], references: [id])
   professionals professionals @relation(fields: [professionalId], references: [id])
@@ -72,5 +72,11 @@ model evaluations {
   content String
   
   jobs jobs @relation(fields: [jobId], references: [id])
+}
+
+enum Status {
+  Pending
+  Confirmed
+  Done
 }
 

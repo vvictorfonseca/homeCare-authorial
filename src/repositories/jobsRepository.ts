@@ -13,7 +13,7 @@ async function updateRequestToTrue(newJob: CreateJobData) {
             date: newJob.date
         },
         data: {
-            isConfirmed: true
+            isConfirmed: "Confirmed"
         }
     })
 

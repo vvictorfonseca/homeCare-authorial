@@ -3,6 +3,7 @@ import jobsService, { CreateJobData } from "../services/jobsService.js";
 
 async function requestNewJob(req: Request, res: Response) {
     const body = req.body
+    console.log("entroou")
     const clientId = res.locals.user.id
     const newJob: CreateJobData = ({...body, clientId})
 
