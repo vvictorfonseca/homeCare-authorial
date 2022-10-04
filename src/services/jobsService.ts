@@ -39,6 +39,7 @@ async function getjobsByProfessionalId(professionalId: number) {
 
 async function getJobsToEvaluateByClientId(clientId: number) {
   const jobs = await jobsRepository.getJobsByClientId(clientId)
+  console.log("jobss", jobs)
 
   function getJobs(value) {
     let date = value.date
@@ -46,11 +47,13 @@ async function getJobsToEvaluateByClientId(clientId: number) {
     var dateObject = new Date(+dateParts[2], dateParts[1] - 1, +dateParts[0]);
 
     if (dayjs().isAfter(dateObject)) {
+      console.log("entrou")
       return value
     }
   }
 
   const jobsFiltered = jobs.filter(getJobs)
+  console.log("filtrado", jobsFiltered)
 
   return jobsFiltered
 }
