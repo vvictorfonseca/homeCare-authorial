@@ -20,6 +20,21 @@ async function updateRequestToTrue(newJob: CreateJobData) {
     return updateJob
 }
 
+async function updateRequestToDone(newJob: CreateJobData) {
+  const updateJob = await prisma.jobs.updateMany({
+      where: {
+          clientId: newJob.clientId,
+          professionalId: newJob.professionalId,
+          date: newJob.date
+      },
+      data: {
+          isConfirmed: "Done"
+      }
+  })
+
+  return updateJob
+}
+
 async function getjobsByProfessionalId(professionalId: number) {
     const jobs = await prisma.jobs.findMany({
         where: {
@@ -124,6 +139,7 @@ async function evaluateJob(evaluateJob: CreateEvaluateData) {
 const jobsRepository = {
     requestNewJob,
     updateRequestToTrue,
+    updateRequestToDone,
     getjobsByProfessionalId,
     getJobsByClientId,
     deleteJobById,

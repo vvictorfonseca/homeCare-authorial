@@ -3,7 +3,6 @@ import jobsService, { CreateJobData, CreateEvaluateData } from "../services/jobs
 
 async function requestNewJob(req: Request, res: Response) {
     const body = req.body
-    console.log("entroou")
     const clientId = res.locals.user.id
     const newJob: CreateJobData = ({...body, clientId})
 
@@ -20,6 +19,16 @@ async function updateRequestToTrue(req: Request, res: Response) {
     await jobsService.updateRequestToTrue(newJob)
 
     return res.sendStatus(201)
+}
+
+async function updateRequestToDone(req: Request, res: Response) {
+  const body = req.body
+  const clientId = res.locals.user.id
+  const newJob: CreateJobData = ({...body, clientId})
+
+  await jobsService.updateRequestToDone(newJob)
+
+  return res.sendStatus(201)
 }
 
 async function getjobsByProfessionalId(req: Request, res: Response) {
@@ -62,4 +71,4 @@ async function evaluateJob(req: Request, res: Response) {
   return res.sendStatus(201)
 }
 
-export { requestNewJob, updateRequestToTrue, getjobsByProfessionalId, getJobsByClientId, deleteJobById, getJobsToEvaluateByClientId, evaluateJob }
+export { requestNewJob, updateRequestToTrue, getjobsByProfessionalId, getJobsByClientId, deleteJobById, getJobsToEvaluateByClientId, evaluateJob, updateRequestToDone }

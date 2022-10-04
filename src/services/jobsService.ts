@@ -31,6 +31,18 @@ async function updateRequestToTrue(newJob: CreateJobData) {
   await jobsRepository.updateRequestToTrue(newJob)
 }
 
+async function updateRequestToDone(newJob: CreateJobData) {
+
+  const client = clientReposiotory.getClientById(newJob.clientId)
+  const professional = professionalRepository.getProfessionalById(newJob.professionalId)
+
+  if (!client || !professional) {
+    throw { type: "bad_request", message: "professional or client nonexist" }
+  }
+
+  await jobsRepository.updateRequestToDone(newJob)
+}
+
 async function getjobsByProfessionalId(professionalId: number) {
   const jobs = await jobsRepository.getjobsByProfessionalId(professionalId)
 
@@ -39,23 +51,18 @@ async function getjobsByProfessionalId(professionalId: number) {
 
 async function getJobsToEvaluateByClientId(clientId: number) {
   const jobs = await jobsRepository.getJobsByClientId(clientId)
-  console.log("jobss", jobs)
 
   function getJobs(value) {
     let date = value.date
     let dateParts = date.split("/")
-    var dateObject = new Date(+dateParts[2], dateParts[1] - 1, +dateParts[0]);
-    console.log("date object", dateObject)
-    console.log("dayjs", dayjs())
+    let dateObject = new Date(+dateParts[2], dateParts[1] - 1, +dateParts[0]);
 
     if (dayjs().isAfter(dateObject)) {
-      console.log("entrou")
       return value
     }
   }
 
   const jobsFiltered = jobs.filter(getJobs)
-  console.log("filtrado", jobsFiltered)
 
   return jobsFiltered
 }
@@ -76,6 +83,7 @@ async function evaluateJob(evaluateJob: CreateEvaluateData) {
 const jobsService = {
   requestNewJob,
   updateRequestToTrue,
+  updateRequestToDone,
   getjobsByProfessionalId,
   getJobsByClientId,
   deleteJobById,
