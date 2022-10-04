@@ -50,7 +50,7 @@ async function getjobsByProfessionalId(professionalId: number) {
 }
 
 async function getJobsToEvaluateByClientId(clientId: number) {
-  const jobs = await jobsRepository.getJobsByClientId(clientId)
+  const jobs = await jobsRepository.getJobsByClientIdToEvaluate(clientId)
 
   function getJobs(value) {
     let date = value.date

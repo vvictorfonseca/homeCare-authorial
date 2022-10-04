@@ -85,7 +85,6 @@ async function getJobsByClientId(clientId: number) {
     const jobs = await prisma.jobs.findMany({
         where: {
             clientId,
-            isConfirmed: "Confirmed"
         },
 
         select: {
@@ -125,6 +124,50 @@ async function getJobsByClientId(clientId: number) {
     return jobs
 }
 
+async function getJobsByClientIdToEvaluate(clientId: number) {
+  const jobs = await prisma.jobs.findMany({
+      where: {
+          clientId,
+          isConfirmed: "Confirmed"
+      },
+
+      select: {
+          id: true,
+          date: true,
+          isConfirmed: true,
+          
+          clients: {
+              select: {
+                  id: true,
+                  fullName: true,
+                  phoneNumber: true,
+                  
+                  address: {
+                      select: {
+                          clientId: true,
+                          city: true,
+                      }
+                  }
+              }
+          },
+          
+          professionals: {
+              select: {
+                  id: true,
+                  fullName: true,
+                  city: true,
+                  type: true,
+                  phoneNumber: true,
+                  profilePhoto: true,
+                  description: true
+              }
+          }
+      }
+  });
+
+  return jobs
+}
+
 async function deleteJobById(jobId: number) {
     const job = await prisma.jobs.delete({
         where: {id: jobId}
@@ -143,6 +186,7 @@ const jobsRepository = {
     updateRequestToDone,
     getjobsByProfessionalId,
     getJobsByClientId,
+    getJobsByClientIdToEvaluate,
     deleteJobById,
     evaluateJob
 }
