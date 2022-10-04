@@ -84,7 +84,8 @@ async function getjobsByProfessionalId(professionalId: number) {
 async function getJobsByClientId(clientId: number) {
     const jobs = await prisma.jobs.findMany({
         where: {
-            clientId
+            clientId,
+            isConfirmed: "Confirmed"
         },
 
         select: {
