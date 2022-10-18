@@ -3,7 +3,7 @@ import { Router } from "express";
 import { validateSchema } from "../middlewares/validateSchema.js";
 import validateToken from "../middlewares/validateToken.js";
 import  {newJobSchema, evaluateJobSchema } from "../schemas/jobsSchema.js";
-import { requestNewJob, updateRequestToTrue, getjobsByProfessionalId, getJobsByClientId, deleteJobById, getJobsToEvaluateByClientId, evaluateJob, updateRequestToDone } from "../controllers/jobsController.js";
+import { requestNewJob, updateRequestToTrue, getjobsByProfessionalId, getJobsByClientId, deleteJobById, getJobsToEvaluateByClientId, evaluateJob, updateRequestToDone, getProfessionalEvaluations } from "../controllers/jobsController.js";
 
 const jobRouter = Router()
 
@@ -15,5 +15,6 @@ jobRouter.get("/jobs/client", validateToken, getJobsByClientId)
 jobRouter.get("/jobs/client/evaluate", validateToken, getJobsToEvaluateByClientId)
 jobRouter.delete("/delete/job/:jobId", validateToken, deleteJobById)
 jobRouter.post("/evaluate/job", validateToken, validateSchema(evaluateJobSchema), evaluateJob)
+jobRouter.get("/evaluations/:professionalId", getProfessionalEvaluations)
 
 export default jobRouter

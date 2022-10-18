@@ -80,6 +80,12 @@ async function evaluateJob(evaluateJob: CreateEvaluateData) {
   await jobsRepository.evaluateJob(evaluateJob)
 }
 
+async function getProfessionalEvaluations(professionalId: number) {
+  const evaluations = await jobsRepository.getProfessionalEvaluations(professionalId)
+
+  return evaluations
+}
+
 const jobsService = {
   requestNewJob,
   updateRequestToTrue,
@@ -88,7 +94,8 @@ const jobsService = {
   getJobsByClientId,
   deleteJobById,
   getJobsToEvaluateByClientId,
-  evaluateJob
+  evaluateJob,
+  getProfessionalEvaluations
 }
 
 export default jobsService

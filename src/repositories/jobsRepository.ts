@@ -180,6 +180,44 @@ async function evaluateJob(evaluateJob: CreateEvaluateData) {
   await prisma.evaluations.create({data: evaluateJob})
 }
 
+async function getProfessionalEvaluations(professionalId: number) {
+  const evaluations = await prisma.evaluations.findMany({
+    where: {
+      jobs: {
+        professionalId: professionalId
+      }
+    },
+    
+    select: {
+      content: true,
+
+      jobs: {
+        select: {
+          date: true,
+
+          professionals: {
+            select: {
+              fullName: true,
+              profilePhoto: true,
+              city: true,
+              type: true
+            }
+          },
+
+          clients: {
+            select: {
+              fullName: true,
+              profilePhoto: true
+            }
+          }
+        }
+      }
+    }
+  })
+
+  return evaluations
+}
+
 const jobsRepository = {
     requestNewJob,
     updateRequestToTrue,
@@ -188,7 +226,8 @@ const jobsRepository = {
     getJobsByClientId,
     getJobsByClientIdToEvaluate,
     deleteJobById,
-    evaluateJob
+    evaluateJob,
+    getProfessionalEvaluations
 }
 
 export default jobsRepository
