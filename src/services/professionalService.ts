@@ -56,12 +56,18 @@ async function getProfessionalByEmail(email: string) {
     return professional
 }
 
+async function getProfessionalById(professionalId: number) {
+  const professional = await professionalRepository.getProfessionalById(professionalId)
+  return professional
+}
+
 const professionalService = {
     createProfessional,
     loginProfessional,
     getProfessionalsByTypeAndLocation,
     updateProfessionalDescription,
-    getProfessionalByEmail
+    getProfessionalByEmail,
+    getProfessionalById
 }
 
 export default professionalService

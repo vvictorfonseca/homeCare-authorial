@@ -48,4 +48,12 @@ async function updateProfessionalDescription(req: Request, res: Response) {
     return res.sendStatus(200)
 }
 
-export { createProfessional, loginProfessional, getProfessionalsByType, updateProfessionalDescription }
+async function getProfessionalById(req: Request, res: Response) {
+  const professionalId: number = parseInt(req.params.professionalId)
+
+  const professional = await professionalService.getProfessionalById(professionalId)
+
+  return res.status(200).send(professional)
+}
+
+export { createProfessional, loginProfessional, getProfessionalsByType, updateProfessionalDescription, getProfessionalById }
