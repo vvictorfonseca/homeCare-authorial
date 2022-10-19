@@ -11,6 +11,6 @@ professionalRouter.post("/sign-up/professional", validateSchema(professionalSche
 professionalRouter.post("/sign-in/professional", validateSchema(loginProfessionalSchema), loginProfessional)
 professionalRouter.get("/professionals/:type",  validateToken, getProfessionalsByType)
 professionalRouter.put("/update/description", validateToken, validateSchema(updateDescriptionSchema), updateProfessionalDescription)
-professionalRouter.get("/professional/:professionalId", validateSchema, getProfessionalById)
+professionalRouter.get("/professional/:professionalId", validateToken, getProfessionalById)
 
 export default professionalRouter
