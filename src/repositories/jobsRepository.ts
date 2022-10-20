@@ -37,6 +37,10 @@ async function updateRequestToDone(newJob: CreateJobData) {
 
 async function getjobsByProfessionalId(professionalId: number) {
   const jobs = await prisma.jobs.findMany({
+    orderBy: {
+      id: 'desc'
+    },
+    
     where: {
       professionalId
     },
@@ -86,6 +90,7 @@ async function getJobsByClientId(clientId: number) {
     orderBy: {
       id: 'desc'
     },
+    
     where: {
       clientId,
     },
