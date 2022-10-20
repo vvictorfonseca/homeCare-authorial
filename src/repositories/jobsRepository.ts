@@ -192,6 +192,10 @@ async function evaluateJob(evaluateJob: CreateEvaluateData) {
 
 async function getProfessionalEvaluations(professionalId: number) {
   const evaluations = await prisma.evaluations.findMany({
+    orderBy: {
+      id: 'desc'
+    },
+
     where: {
       jobs: {
         professionalId: professionalId
