@@ -39,9 +39,11 @@ password: 123
 - React.js
 - Node.js
 - Express.js
+- TypeScript
 - PostgresSQL
 - Prisma
 - JWTs & refresh tokens
+- Jest
 
 ***
 ## 🏁 Rodando a aplicação
