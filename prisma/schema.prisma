@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -11,67 +8,61 @@ datasource db {
 }
 
 model professionals {
-  id Int @id @default(autoincrement())
-  email String @unique
-  password String
-  fullName String
-  city String
-  type String
+  id           Int     @id @default(autoincrement())
+  email        String  @unique
+  password     String
+  fullName     String
+  city         String
   profilePhoto String
-  description String?
-  phoneNumber String
-
-  jobs jobs[]
+  description  String?
+  phoneNumber  String
+  type         String
+  jobs         jobs[]
 
   @@unique([id, email])
 }
 
 model clients {
-  id Int @id @default(autoincrement())
-  email String @unique
-  password String
-  fullName String
-  phoneNumber String
+  id           Int         @id @default(autoincrement())
+  password     String
+  fullName     String
+  phoneNumber  String
+  email        String      @unique
   profilePhoto String
-
-  address addresses[]
-  jobs jobs[]
+  address      addresses[]
+  jobs         jobs[]
 
   @@unique([id, email])
 }
 
 model addresses {
-  id Int @id @default(autoincrement())
-  clientId Int
-  city String
-  district String
-  street String
-  number Int
+  id         Int     @id @default(autoincrement())
+  clientId   Int
+  district   String
+  street     String
+  number     Int
   complement String
-  zipCode String
-  
-  clients clients @relation(fields: [clientId], references: [id])
+  zipCode    String
+  city       String
+  clients    clients @relation(fields: [clientId], references: [id])
 }
 
 model jobs {
-  id Int @id @default(autoincrement())
-  clientId Int
+  id             Int           @id @default(autoincrement())
+  clientId       Int
   professionalId Int
-  date String
-  isConfirmed Status @default(Pending)
-
-  clients clients @relation(fields: [clientId], references: [id])
-  professionals professionals @relation(fields: [professionalId], references: [id])
-
-  evaluations evaluations[]
+  date           String
+  isConfirmed    Status        @default(Pending)
+  clients        clients       @relation(fields: [clientId], references: [id])
+  professionals  professionals @relation(fields: [professionalId], references: [id])
+  evaluations    evaluations[]
 }
 
 model evaluations {
-  id Int @id @default(autoincrement())
-  jobId Int
+  id      Int    @id @default(autoincrement())
+  jobId   Int
   content String
-  
-  jobs jobs @relation(fields: [jobId], references: [id])
+  jobs    jobs   @relation(fields: [jobId], references: [id])
 }
 
 enum Status {
@@ -79,4 +70,3 @@ enum Status {
   Confirmed
   Done
 }
-
